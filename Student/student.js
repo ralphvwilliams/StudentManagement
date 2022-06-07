@@ -14,9 +14,11 @@ class Student {
   }
 
   setName(newName) {
-    if (newName.length < 1) {
+    if (newName.length < 1 || typeof newName != "string") {
       this.#name = "DEFAULT";
-      console.log("Please enter a valid name, name set to 'DEFAULT'.");
+      console.log(
+        "Please enter a valid name, name set to 'DEFAULT'. You can correct it using setName()"
+      );
       return;
     }
 
@@ -25,20 +27,24 @@ class Student {
   }
 
   setAge(newAge) {
-    if (newAge > 0) {
+    if (newAge > 0 && typeof newAge == "number") {
       this.#age = newAge;
     } else {
       this.#age = 0;
-      console.log("Invalid age, age has been set to 0.");
+      console.log(
+        "Invalid age, age has been set to 0. You can correct it using setAge()"
+      );
     }
   }
 
   setGrade(newGrade) {
-    if (newGrade > 0) {
+    if (newGrade > 0 && typeof newGrade == "number") {
       this.#grade = newGrade;
     } else {
       this.#grade = 0;
-      console.log("Invalid grade, grade has been set to 0.");
+      console.log(
+        "Invalid grade, grade has been set to 0. You can correct it using setGrade()"
+      );
     }
   }
 
