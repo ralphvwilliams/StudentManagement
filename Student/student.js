@@ -102,36 +102,42 @@ function enrollStudent(student) {
   studentRoll.push(student);
 }
 
+// function searchStudent(name) {
+//   name = name.toUpperCase();
+//   let students = [];
+//   for (index in studentRoll) {
+//     if (studentRoll[index].getName() === name) {
+//       students.push(studentRoll[index]);
+//     }
+//   }
+//   return students;
+// }
+
 function searchStudent(name) {
-  name = name.toUpperCase();
-  let students = [];
-  for (index in studentRoll) {
-    if (studentRoll[index].getName() === name) {
-      students.push(studentRoll[index]);
-    }
-  }
-  return students;
+  return studentRoll.filter((s) => s.getName().includes(name.toUpperCase()));
 }
 
 function filterStudentsByGrade(grade) {
-  let students = [];
-  for (index in studentRoll) {
-    if (studentRoll[index].getGrade() === grade) {
-      students.push(studentRoll[index]);
-    }
-  }
-  return students;
+  //   let students = [];
+  //   for (index in studentRoll) {
+  //     if (studentRoll[index].getGrade() === grade) {
+  //       students.push(studentRoll[index]);
+  //     }
+  //   }
+  //   return students;
+  return studentRoll.filter((s) => s.getGrade() == grade);
 }
 
 function filterStudentsByAge(minAge, maxAge) {
-  let students = [];
-  for (index in studentRoll) {
-    if (
-      studentRoll[index].getAge() > minAge &&
-      studentRoll[index].getAge() < maxAge
-    ) {
-      students.push(studentRoll[index]);
-    }
-  }
-  return students;
+  //   let students = [];
+  //   for (index in studentRoll) {
+  //     if (
+  //       studentRoll[index].getAge() > minAge &&
+  //       studentRoll[index].getAge() < maxAge
+  //     ) {
+  //       students.push(studentRoll[index]);
+  //     }
+  //   }
+  //   return students;
+  return studentRoll.filter((s) => s.getAge() > minAge && s.getAge() < maxAge);
 }
