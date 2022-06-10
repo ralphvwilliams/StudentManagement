@@ -15,7 +15,7 @@ class Student {
 
   setName(newName) {
     if (newName.length < 1 || typeof newName != "string") {
-      this.#name = "DEFAULT";
+      this.#name = "";
       console.log(
         "Please enter a valid name, name set to 'DEFAULT'. You can correct it using setName()"
       );
@@ -48,7 +48,7 @@ class Student {
     }
   }
 
-  setCourses(...courses) {
+  setCourses(courses) {
     this.#courses = courses;
   }
 
@@ -69,9 +69,7 @@ class Student {
   }
 
   printCourses() {
-    for (let index in this.#courses) {
-      console.log(this.#courses[index]);
-    }
+    return this.#courses.join(", ");
   }
 
   calculateGpa(newGpa) {
@@ -89,7 +87,7 @@ class Student {
 //Management
 let studentRoll = [];
 
-function createStudent(name, age, grade, courses) {
+function createStudent(name, age, grade, ...courses) {
   let student = new Student();
   student.setName(name);
   student.setAge(age);
@@ -141,3 +139,130 @@ function filterStudentsByAge(minAge, maxAge) {
   //   return students;
   return studentRoll.filter((s) => s.getAge() > minAge && s.getAge() < maxAge);
 }
+//DOM
+let counter = 0;
+
+let form = document.getElementById("form");
+let studentName = document.getElementById("nameField");
+
+let age = document.getElementById("ageField");
+let grade = document.getElementById("gradeField");
+let courses = document.getElementById("courseField");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  textValidator(studentName);
+  numberValidator(age);
+  numberValidator(grade);
+  textValidator(courses);
+  if (
+    textValidator(studentName) &&
+    numberValidator(age) &&
+    numberValidator(grade) &&
+    textValidator(courses)
+  ) {
+    studentRoll.push(
+      createStudent(
+        studentName.value,
+        Number(age.value),
+        Number(grade.value),
+        courses.value
+      )
+    );
+    studentName.value = "";
+    age.value = "";
+    grade.value = "";
+    courses.value = "";
+    createTable();
+    counter += 1;
+  }
+  console.log(studentRoll);
+  // studentName.value = "";
+  // age.value = "";
+  // grade.value = "";
+  // courses.value = "";
+});
+
+function textValidator(field) {
+  let p = document.getElementById(`${field.getAttribute("id")}Warning`);
+  if (field.value == "") {
+    p.style.display = "block";
+    return false;
+  }
+  p.style.display = "none";
+  return true;
+}
+
+function numberValidator(field) {
+  let p = document.getElementById(`${field.getAttribute("id")}Warning`);
+  if (field.value == "") {
+    p.style.display = "block";
+    return false;
+  }
+  p.style.display = "none";
+  return true;
+}
+
+// <tr id="task-content1">
+//               <th scope="row" id="count1">1</th>
+//               <td>Ralph</td>
+//               <td id="task1">25</td>
+//               <td>5</td>
+//               <td>English, French</td>
+//             </tr>
+
+let tbody = document.getElementById("tbody");
+function createTable() {
+  tbody.innerHTML += `<tr id="task-content1">
+  <th scope="row" id="count1">${counter}</th>
+  <td>${studentRoll[counter].getName()}</td>
+  <td id="task1">${studentRoll[counter].getAge()}</td>
+  <td>${studentRoll[counter].getGrade()}</td>
+  <td>${studentRoll[counter].printCourses()}</td>
+</tr>`;
+}
+
+let searchBtn = document.getElementById("searchBtn");
+let searchField = document.getElementById("searchField");
+let tsbody = document.getElementById("tsbody");
+let searchTable = document.getElementById("searchTable");
+let closeSearch = document.getElementById("closeSearch");
+let studentTable = document.getElementById("studentTable");
+let closeAll = document.getElementById("closeAll");
+
+function displaySearch() {
+  let result = searchStudent(searchField.value);
+  tsbody.innerHTML = "";
+  for (index in result) {
+    tsbody.innerHTML += `<tr id="task-content1">
+    <th scope="row" id="count1">-</th>
+    <td>${result[index].getName()}</td>
+    <td id="task1">${result[index].getAge()}</td>
+    <td>${result[index].getGrade()}</td>
+    <td>${result[index].printCourses()}</td>
+  </tr>`;
+  }
+}
+
+searchBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  displaySearch();
+  studentTable.style.display = "none";
+  searchTable.style.display = "block";
+});
+
+closeSearch.addEventListener("click", (event) => {
+  event.preventDefault();
+  searchTable.style.display = "none";
+});
+
+closeAll.addEventListener("click", (event) => {
+  event.preventDefault();
+  studentTable.style.display = "none";
+});
+
+let showBtn = document.getElementById("showBtn");
+showBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  studentTable.style.display = "block";
+  searchTable.style.display = "none";
+});
