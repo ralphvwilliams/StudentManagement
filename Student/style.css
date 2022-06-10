@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.hero-container {
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.warnings {
+  display: none;
+  color: red;
+}
+
+.nameInput {
+  margin-top: 10px;
+}
+
+.submit {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#studentTable,
+#searchTable {
+  display: none;
+}
+
+.show-btn {
+  margin-left: 60px;
+}
