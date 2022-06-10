@@ -4,9 +4,120 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Document</title>
   </head>
   <body>
+    <section>
+      <nav id="navbar">
+        <div class="nav-info">
+          <h1>Student Management System</h1>
+        </div>
+        <div class="search">
+          <input type="text" name="search" id="searchField" />
+          <button id="searchBtn">Search</button>
+        </div>
+      </nav>
+    </section>
+    <section class="hero-container">
+      <form id="form">
+        <div class="nameInput">
+          <label for="name">Name :</label>
+          <input type="text" name="name" class="field" id="nameField" />
+          <p id="nameFieldWarning" class="warnings">
+            Invalid input. Please try again
+          </p>
+        </div>
+        <div class="nameInput">
+          <label for="age">Age :</label>
+          <input type="number" name="age" class="field" id="ageField" />
+          <p id="ageFieldWarning" class="warnings">
+            Invalid input. Please try again
+          </p>
+        </div>
+        <div class="nameInput">
+          <label for="grade">Grade :</label>
+          <input type="number" name="grade" class="field" id="gradeField" />
+          <p id="gradeFieldWarning" class="warnings">
+            Invalid input. Please try again
+          </p>
+        </div>
+        <div class="nameInput">
+          <label for="courses">Courses :</label>
+          <input type="text" name="courses" id="courseField" />
+          <p id="courseFieldWarning" class="warnings">
+            Invalid input. Please try again
+          </p>
+        </div>
+        <input type="submit" class="submit" />
+      </form>
+    </section>
+    <section class="student-table">
+      <div class="show-btn">
+        <button id="showBtn">Show All Students</button>
+      </div>
+      <div id="studentTable" class="table_value mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Courses</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <!-- <tr id="task-content1">
+              <th scope="row" id="count1">1</th>
+              <td>Ralph</td>
+              <td id="task1">25</td>
+              <td>5</td>
+              <td>English, French</td>
+            </tr> -->
+          </tbody>
+        </table>
+        <button id="closeAll">Close Table</button>
+      </div>
+    </section>
+    <section class="search-table">
+      <div id="searchTable" class="table_value mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Courses</th>
+            </tr>
+          </thead>
+          <tbody id="tsbody">
+            <!-- <tr id="task-content1">
+              <th scope="row" id="count1">1</th>
+              <td>Ralph</td>
+              <td id="task1">25</td>
+              <td>5</td>
+              <td>English, French</td>
+            </tr> -->
+          </tbody>
+        </table>
+        <button id="closeSearch">Close Search</button>
+      </div>
+    </section>
     <script src="./student.js"></script>
   </body>
 </html>
